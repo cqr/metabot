@@ -17,7 +17,7 @@ class MetaBot
   def initialize(arg = {})
     @name = arg[:name] || 'Charlie'
     @log = Logger.new(arg[:lout]||STDOUT)
-    @log.level = Logger::arg[:llevel] || Logger::DEBUG
+    @log.level = Logger.const_get((arg[:llevel] || 'DEBUG').intern)
     @log.debug("Firing up a metabot named #{@name}...")
     # by default we are not waiting for a particular response.
     @waiting = false
